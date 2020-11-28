@@ -53,7 +53,7 @@ int main(){
     
     // RUNNING 2K GENERATIONS
     int newgrid_alives;
-    for(int g = 1; g <= 2000; g++){
+    for(int g = 1; g <= MAX_GEN; g++){
         // For every cell
         newgrid_alives = 0;
         for(int h = 0; h < DIM*DIM; h++){
