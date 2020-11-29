@@ -28,7 +28,7 @@ int getNeighbors(int** grid, int i, int j){
 }
 
 int main(){
-    // DECLARING MATRICES
+    // Declaring matrices
     int **grid = (int**) malloc(DIM*sizeof(int*));
     for(int i = 0; i < DIM; i++){
         grid[i] = (int*) malloc(DIM * sizeof(int));
@@ -38,7 +38,7 @@ int main(){
         newgrid[i] = (int*) malloc(DIM * sizeof(int));
     }
 
-    // RANDOMLY FILLING THE GRID
+    // Randomly filling the grid
     srand(SRAND_VALUE);
     for(int i = 0; i < DIM; i++){
         for(int j = 0; j < DIM; j++){
@@ -46,11 +46,11 @@ int main(){
         }
     }
 
-    // CLOCK INITIALIZE
+    // Clock initialize
     clock_t time[2];
     time[0] = clock();
     
-    // RUNNING 2K GENERATIONS
+    // Running 2K Generations
     int newgrid_alives;
     for(int g = 1; g <= MAX_GEN; g++){
         // For every cell
@@ -78,7 +78,7 @@ int main(){
             }
         }
 
-        // COPY NEWGRID TO GRID
+        // Copy newgrid to grid
         for(int h = 0; h < DIM*DIM; h++){
             int i = h / DIM;
             int j = h % DIM;
@@ -86,14 +86,21 @@ int main(){
         }
     }
 
-    // CLOCK FINALIZE
+    // Clock finalize
     time[1] = clock();
 
+    // Printing results
     printf("%d alive cells\n", newgrid_alives);
     
     printf("%gms to run\n", (time[1] - time[0]) * 1000.0 / CLOCKS_PER_SEC);
 
+    // Free dynamic matrices
+    for(int i = 0; i < DIM; i++){
+        free(grid[i]);
+        free(newgrid[i]);
+    }
     free(grid);
     free(newgrid);
+
     return 0;
 }
