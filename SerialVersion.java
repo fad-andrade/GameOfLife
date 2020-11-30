@@ -30,7 +30,7 @@ public class SerialVersion{
         int[][] grid = new int[DIM][DIM];
         int[][] newgrid = new int[DIM][DIM];
 
-        //Randomly filling the grid
+        // Randomly filling the grid
         Random generator = new Random(1985);
         for(int i = 0; i < DIM; i++){
             for(int j = 0; j < DIM; j++){
@@ -38,10 +38,14 @@ public class SerialVersion{
             }
         }
 
-        //Running 2K Generations
+        // Clock initialize
+        long[] time = new long[2];
+        time[0] = System.currentTimeMillis();
+
+        // Running 2K Generations
         int newgrid_alives = 0;
         for(int g = 1; g <= MAX_GEN; g++){
-            //For every cell
+            // For every cell
             newgrid_alives = 0;
             for(int h = 0; h < DIM*DIM; h++){
                 int i = h / DIM;
@@ -74,7 +78,12 @@ public class SerialVersion{
             }    
         }
 
+        // Clock finalize
+        time[1] = System.currentTimeMillis();
+
         // Printing results
-        System.out.println(newgrid_alives + "alive cells\n");
+        System.out.println(newgrid_alives + " alive cells");
+
+        System.out.println((time[1] - time[0] + "ms to run"));
     }
 }
