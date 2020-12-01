@@ -104,6 +104,10 @@ public class JavaThreadsVersion{
             }
         }
 
+        // Clock initialize
+        long[] time = new long[2];
+        time[0] = System.currentTimeMillis();
+        
         int newgrid_alives_local = 0;
         //Running 2K generations
         for(int g = 1; g <= Global.MAX_GEN; g++){
@@ -140,8 +144,13 @@ public class JavaThreadsVersion{
                 }
             }       
         }
+
+        // Clock finalize
+        time[1] = System.currentTimeMillis();
         
         // Printing results
         System.out.println(newgrid_alives_local + " alive cells");
+
+        System.out.println((time[1] - time[0] + "ms to run"));
     }
 }
