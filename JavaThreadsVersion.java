@@ -104,16 +104,6 @@ public class JavaThreadsVersion{
             }
         }
 
-        // Testing
-        int cont = 0;
-        for(int i = 0; i < Global.DIM; i++){
-            for(int j = 0; j < Global.DIM; j++){
-                if(Global.grid[i][j] == 0)
-                    cont++;
-            }
-        }
-        System.out.println("Gen 0: " + cont);
-
         int newgrid_alives_local = 0;
         //Running 2K generations
         for(int g = 1; g <= Global.MAX_GEN; g++){
@@ -136,8 +126,6 @@ public class JavaThreadsVersion{
                 Global.newgrid_alives[th] = 0;
             }
 
-            System.out.println("Gen " + g + ": " + newgrid_alives_local);
-
             // Copying newgrid to grid
             // Create threads
             for(int th = 0; th < Global.MAX_THREADS; th++){
@@ -154,6 +142,6 @@ public class JavaThreadsVersion{
         }
         
         // Printing results
-        // System.out.println(newgrid_alives_local + " alive cells");
+        System.out.println(newgrid_alives_local + " alive cells");
     }
 }
