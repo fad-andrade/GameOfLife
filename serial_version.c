@@ -47,8 +47,8 @@ int main(){
     }
 
     // Clock initialize
-    clock_t time[2];
-    time[0] = clock();
+    struct timeval inicio, final2;
+    gettimeofday(&inicio, NULL);
     
     // Running 2K Generations
     int newgrid_alives;
@@ -87,12 +87,12 @@ int main(){
     }
 
     // Clock finalize
-    time[1] = clock();
+    gettimeofday(&final2, NULL);
 
     // Printing results
     printf("%d alive cells\n", newgrid_alives);
     
-    printf("%gms to run\n", (time[1] - time[0]) * 1000.0 / CLOCKS_PER_SEC);
+    printf("%ldms to run\n", (1000 * (final2.tv_sec - inicio.tv_sec) + (final2.tv_usec - inicio.tv_usec) / 1000));
 
     // Free dynamic matrices
     for(int i = 0; i < DIM; i++){
