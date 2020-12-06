@@ -30,6 +30,10 @@ int getNeighbors(int** grid, int i, int j){
 }
 
 int main(){
+    // Clock initialize
+    struct timeval start, end;
+    gettimeofday(&start, NULL);
+
     // Declaring matrices
     int **grid = (int**) malloc(DIM*sizeof(int*));
     for(int i = 0; i < DIM; i++){
@@ -49,8 +53,8 @@ int main(){
     }
 
     // Clock initialize
-    double time[2];
-    time[0] = omp_get_wtime();
+    double time2[2];
+    time2[0] = omp_get_wtime();
     
     // Running 2K genarations
     int newgrid_alives;
@@ -102,11 +106,16 @@ int main(){
     }
 
     // Clock finalize
-    time[1] = omp_get_wtime();
+    time2[1] = omp_get_wtime();
 
     printf("%d alive cells\n", newgrid_alives);
     
-    printf("%fms to run\n", (time[1] - time[0]) * 1000);
+    printf("%fms to run the main loop\n", (time2[1] - time2[0]) * 1000);
+
+    // Clock finalize
+    gettimeofday(&end, NULL);
+    // Printing results
+    printf("%ldms to run the entire code\n", (1000 * (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000));
 
     free(grid);
     free(newgrid);
