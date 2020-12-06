@@ -28,6 +28,10 @@ int getNeighbors(int** grid, int i, int j){
 }
 
 int main(){
+    // Clock initialize
+    struct timeval start, end;
+    gettimeofday(&start, NULL);
+
     // Declaring matrices
     int **grid = (int**) malloc(DIM*sizeof(int*));
     for(int i = 0; i < DIM; i++){
@@ -47,8 +51,8 @@ int main(){
     }
 
     // Clock initialize
-    struct timeval inicio, final2;
-    gettimeofday(&inicio, NULL);
+    struct timeval start2, end2;
+    gettimeofday(&start2, NULL);
     
     // Running 2K Generations
     int newgrid_alives;
@@ -87,12 +91,12 @@ int main(){
     }
 
     // Clock finalize
-    gettimeofday(&final2, NULL);
+    gettimeofday(&end2, NULL);
 
     // Printing results
     printf("%d alive cells\n", newgrid_alives);
     
-    printf("%ldms to run\n", (1000 * (final2.tv_sec - inicio.tv_sec) + (final2.tv_usec - inicio.tv_usec) / 1000));
+    printf("%ldms to run the main loop\n", (1000 * (end2.tv_sec - start2.tv_sec) + (end2.tv_usec - start2.tv_usec) / 1000));
 
     // Free dynamic matrices
     for(int i = 0; i < DIM; i++){
@@ -101,6 +105,11 @@ int main(){
     }
     free(grid);
     free(newgrid);
+
+    // Clock finalize
+    gettimeofday(&end, NULL);
+    // Printing results
+    printf("%ldms to run the entire code\n", (1000 * (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec) / 1000));
 
     return 0;
 }
