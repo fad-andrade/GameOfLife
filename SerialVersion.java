@@ -26,6 +26,10 @@ public class SerialVersion{
     }
 
     public static void main(String[] args) {
+        // Clock initialize
+        long[] time = new long[2];
+        time[0] = System.currentTimeMillis();
+
         // Declaring matrices
         int[][] grid = new int[DIM][DIM];
         int[][] newgrid = new int[DIM][DIM];
@@ -39,8 +43,8 @@ public class SerialVersion{
         }
 
         // Clock initialize
-        long[] time = new long[2];
-        time[0] = System.currentTimeMillis();
+        long[] time2 = new long[2];
+        time2[0] = System.currentTimeMillis();
 
         // Running 2K Generations
         int newgrid_alives = 0;
@@ -79,11 +83,16 @@ public class SerialVersion{
         }
 
         // Clock finalize
-        time[1] = System.currentTimeMillis();
+        time2[1] = System.currentTimeMillis();
 
         // Printing results
         System.out.println(newgrid_alives + " alive cells");
 
-        System.out.println((time[1] - time[0] + "ms to run"));
+        System.out.println((time2[1] - time2[0] + "ms to run the main loop"));
+
+        // Clock finalize
+        time[1] = System.currentTimeMillis();
+        // Printing results
+        System.out.println((time[1] - time[0] + "ms to run the entire code"));
     }
 }
