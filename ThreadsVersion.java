@@ -93,6 +93,10 @@ class Threads extends Thread{
 
 public class ThreadsVersion{
     public static void main(String[] args){
+        // Clock initialize
+        long[] time = new long[2];
+        time[0] = System.currentTimeMillis();
+
         // public static int[] newgrid_alives = new int[MAX_THREADS];
         Threads threads[] = new Threads[Global.MAX_THREADS];
 
@@ -105,8 +109,8 @@ public class ThreadsVersion{
         }
 
         // Clock initialize
-        long[] time = new long[2];
-        time[0] = System.currentTimeMillis();
+        long[] time2 = new long[2];
+        time2[0] = System.currentTimeMillis();
         
         int newgrid_alives_local = 0;
         //Running 2K generations
@@ -146,11 +150,16 @@ public class ThreadsVersion{
         }
 
         // Clock finalize
-        time[1] = System.currentTimeMillis();
+        time2[1] = System.currentTimeMillis();
         
         // Printing results
         System.out.println(newgrid_alives_local + " alive cells");
 
-        System.out.println((time[1] - time[0] + "ms to run"));
+        System.out.println((time2[1] - time2[0] + "ms to run the main loop"));
+
+        // Clock finalize
+        time[1] = System.currentTimeMillis();
+        // Printing results
+        System.out.println((time[1] - time[0] + "ms to run the entire code"));
     }
 }
